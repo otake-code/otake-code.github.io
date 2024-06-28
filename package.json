@@ -1,7 +1,7 @@
 {
   "name": "otake-code.github.io",
   "version": "0.1.0",
-  "homepage": "https://otake-code.github.io",
+  "homepage": "https://otake-code.github.io/otake-code.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^11.2.10",
+    "gh-pages": "^6.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.0",
@@ -28,8 +29,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "otake-code.github.io",
-      "otake-code.github.io/jest"
+      "react-app",
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
