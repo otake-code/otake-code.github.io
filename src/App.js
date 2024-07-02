@@ -33,9 +33,9 @@ function App() {
         <div style={{
           backgroundImage: `url(${process.env.PUBLIC_URL}/images/about-background.jpg)`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'top',
           backgroundRepeat: 'no-repeat',
-          flex: '1',
+          minHeight: '100vh', // セクション全体を表示
         }}>
           <About />
           <Skills />

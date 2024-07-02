@@ -10,22 +10,35 @@ const About = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center', // Modified to align items to the center
-        // backgroundImage: `url(${process.env.PUBLIC_URL}/images/simple.jpg)`,
+        alignItems: 'center',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         color: 'black',
-        textAlign: 'left', // Modified to align text to the left
+        textAlign: 'left',
         padding: '2rem',
       }}
     >
       <Typography variant="h3" gutterBottom>
         About Me
       </Typography>
+      <Box
+        component="img"
+        sx={{
+          marginTop: '2rem',
+          width: '150px',
+          height: '150px',
+          borderRadius: '50%', // Makes the image circular
+          objectFit: 'cover',
+        }}
+        alt="Self-portrait"
+        src={`${process.env.PUBLIC_URL}/images/image1.png`}
+      />
       <Typography variant="h6">
-        情報系専攻の学生です。
-        Vision＆Languageの研究に取り組んでいます。
+        <br />
+        情報系専攻の岡田です。<br />
+        Vision＆Languageの研究に取り組んでいます。<br />
+        趣味は写真撮影と旅行です。<br />
       </Typography>
     </Box>
   );
