@@ -21,7 +21,12 @@ function Home() {
           borderRadius: '8px',
         }}
       >
-        <Typography variant="h2" gutterBottom>
+        <Typography
+          variant="h2"
+          gutterBottom
+          component="div"
+          sx={{ fontWeight: 'bold' }} // ここで太字に設定
+        >
           Welcome to My Homepage
         </Typography>
         <Typography variant="h5">

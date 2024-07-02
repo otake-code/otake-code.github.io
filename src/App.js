@@ -9,7 +9,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 const theme = createTheme({
-  // テーマの設定
+  typography: {
+    fontFamily: 'Noto Sans JP, sans-serif',
+  },
 });
 
 function App() {
