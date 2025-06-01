@@ -1,28 +1,58 @@
-// TypingEffect.js
-import React, { useState, useEffect } from 'react';
+// src/components/TypingEffect.js
+import React, { useState, useEffect, useRef } from 'react';
 
-const TypingEffect = ({ text, speed }) => {
+/**
+ * TypingEffect コンポーネント
+ * Props:
+ *  - text: タイプしたい文字列 (必須)
+ *  - speed: タイプ速度 (ミリ秒) (省略時は 100)
+ */
+const TypingEffect = ({ text = '', speed = 100 }) => {
   const [displayText, setDisplayText] = useState('');
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    if (text && typeof text === 'string' && text.length > 0) {
-      let currentIndex = 0;
-      const interval = setInterval(() => {
-        setDisplayText((prevText) => prevText + text[currentIndex]);
-        currentIndex++;
-        if (currentIndex === text.length) {
-          clearInterval(interval);
-        }
-      }, speed);
-
-      return () => clearInterval(interval);
+    // text が文字列でない or 空文字列なら何も表示せず return
+    if (typeof text !== 'string' || text.length === 0) {
+      setDisplayText('');
+      return;
     }
-  }, [text, speed]);
+
+    // ① 新しい text が来たらまずは displayText をリセットする
+    setDisplayText('');
+
+    let currentIndex = 0;
+
+    // ② すでに走っているインターバルがあればクリアする
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    // ③ 新しくインターバルを開始し、文字を1つずつ表示する
+    intervalRef.current = setInterval(() => {
+      if (currentIndex < text.length) {
+        setDisplayText((prev) => prev + text[currentIndex]);
+        currentIndex++;
+      } else {
+        // 全文字表示し終えたら interval をクリア
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }, speed);
+
+    // Cleanup: コンポーネントアンマウント時 or text/speed が変わるたびに interval をクリア
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [text, speed]); // text または speed が変わると再実行
 
   return (
-    <div style={{ color: 'black', fontSize: '32px', textAlign: 'center', marginTop: '50vh', transform: 'translateY(-50%)' }}>
+    <span style={{ color: 'white', fontSize: '2.5rem', fontWeight: 'bold' }}>
       {displayText}
-    </div>
+    </span>
   );
 };
 
