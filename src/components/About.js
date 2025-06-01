@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
 
+const ASPECT_THRESHOLD = 16 / 9;
 const About = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const ASPECT_THRESHOLD = 16 / 9;
   const [isWide, setIsWide] = useState(false);
 
   useEffect(() => {
