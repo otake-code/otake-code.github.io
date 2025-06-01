@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.7a685bdd.js",
-    "index.html": "/index.html",
-    "main.7a685bdd.js.map": "/static/js/main.7a685bdd.js.map"
+    "main.js": "/otake-code.github.io/static/js/main.d66985df.js",
+    "index.html": "/otake-code.github.io/index.html",
+    "main.d66985df.js.map": "/otake-code.github.io/static/js/main.d66985df.js.map"
   },
   "entrypoints": [
-    "static/js/main.7a685bdd.js"
+    "static/js/main.d66985df.js"
   ]
 }
