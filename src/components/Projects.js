@@ -45,11 +45,8 @@ const Projects = () => {
     return () => window.removeEventListener('resize', checkAspect);
   }, []);
 
-  // セクションの最低高さ
-  const minSectionHeight = isMobile ? '60vh' : '80vh';
-
   return (
-    <Box id="projects" sx={{ width: '100%', mb: 0, backgroundColor: '#fff' }}>
+    <Box id="projects" sx={{ width: '100%', backgroundColor: '#fff' }}>
       {/* タイトル部分（白背景） */}
       <Box
         sx={{
@@ -60,10 +57,10 @@ const Projects = () => {
         }}
       >
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
         >
           <Typography variant="h3" align="center" gutterBottom>
             Projects
@@ -76,8 +73,6 @@ const Projects = () => {
         sx={{
           position: 'relative',
           width: '100%',
-          pt: 4,
-          pb: 8,
           backgroundImage: `url(${process.env.PUBLIC_URL}/images/parallax-mountain.png)`,
           backgroundAttachment: 'fixed',
           backgroundRepeat: 'no-repeat',
@@ -87,7 +82,6 @@ const Projects = () => {
             : isWide
             ? '100% auto'
             : 'auto 100%',
-          overflow: 'hidden',
           py: 6,
           px: 2,
         }}
@@ -114,85 +108,102 @@ const Projects = () => {
         >
           {projects.map((proj, idx) => (
             <Grid item xs={12} sm={6} md={4} key={idx}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: idx * 0.2 }}
+              {/* カード全体を <a> にする */}
+              <Box
+                component="a"
+                href={proj.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ textDecoration: 'none' }}  // 下線を消す
               >
-                <Card
-                  sx={{
-                    position: 'relative',
-                    height: 300,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'hidden',
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.3, delay: idx * 0.1 }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -6,
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+                    transition: {
+                      type: 'spring',
+                      stiffness: 300,
+                      damping: 20,
+                      duration: 0.2,
+                    },
                   }}
                 >
-                  {/* カード背景画像 */}
-                  <Box
+                  <Card
                     sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      backgroundImage: `url(${proj.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      filter: 'brightness(0.8)',
-                    }}
-                  />
-
-                  {/* テキスト用オーバーレイ */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      width: '100%',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      color: 'white',
-                      p: 2,
+                      position: 'relative',
+                      height: 300,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      overflow: 'hidden',
                     }}
                   >
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                      {proj.title}
-                    </Typography>
-                    <Typography variant="body2" sx={{ mt: 1, whiteSpace: 'pre-line' }}>
-                      {proj.description}
-                    </Typography>
-                  </Box>
-
-                  {/* 詳細ボタン */}
-                  <CardActions
-                    sx={{
-                      position: 'absolute',
-                      bottom: 8,
-                      right: 8,
-                      p: 0,
-                    }}
-                  >
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      href={proj.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    {/* カード背景画像 */}
+                    <Box
                       sx={{
-                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                        color: 'black',
-                        '&:hover': {
-                          backgroundColor: 'rgba(255, 255, 255, 1)',
-                        },
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: `url(${proj.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        filter: 'brightness(0.8)',
+                      }}
+                    />
+
+                    {/* テキスト用オーバーレイ */}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        color: 'white',
+                        p: 2,
                       }}
                     >
-                      詳細を見る
-                    </Button>
-                  </CardActions>
-                </Card>
-              </motion.div>
+                      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                        {proj.title}
+                      </Typography>
+                      <Typography variant="body2" sx={{ mt: 1, whiteSpace: 'pre-line' }}>
+                        {proj.description}
+                      </Typography>
+                    </Box>
+
+                    {/* 詳細ボタン：クリックしても全体のリンクが優先される */}
+                    <CardActions
+                      sx={{
+                        position: 'absolute',
+                        bottom: 8,
+                        right: 8,
+                        p: 0,
+                      }}
+                    >
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                          color: 'black',
+                          '&:hover': {
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
+                          },
+                        }}
+                      >
+                        詳細を見る
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </motion.div>
+              </Box>
             </Grid>
           ))}
         </Grid>

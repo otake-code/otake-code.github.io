@@ -139,7 +139,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Typography variant="subtitle1" color="text.secondary">
-              メールまたはGitHubからお気軽にご連絡ください。
+              メール: okada@cv.gifu-u.ac.jp またはGitHubからお気軽にご連絡ください。
             </Typography>
           </motion.div>
         </Box>

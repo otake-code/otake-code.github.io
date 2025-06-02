@@ -122,6 +122,19 @@ const skillsData = [
           />
         ),
       },
+      // ここに PHP を追加
+      {
+        name: 'PHP',
+        description: '大学の講義でデータベースの作成・操作を学習',
+        icon: (
+          <Box
+            component="img"
+            src={`${process.env.PUBLIC_URL}/icons/php.svg`}
+            alt="PHP Icon"
+            sx={{ width: 28, height: 28 }}
+          />
+        ),
+      },
     ],
   },
   {
@@ -223,7 +236,6 @@ const skillsData = [
       },
     ],
   },
-
   {
     category: 'Infrastructure',
     items: [
