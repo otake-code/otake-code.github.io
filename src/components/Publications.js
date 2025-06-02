@@ -25,7 +25,7 @@ const publications = [
     ),
     venue: '第31回画像センシングシンポジウム SSII2025, IS3-14',
     year: '2025.5.30',
-    link: 'https://pub.confit.atlas.jp/ja/event/ssii2025',
+    link: 'https://pub.confit.atlas.jp/ja/event/ssii2025/presentation/IS3-14',
   },
   // 必要に応じて同じカテゴリの論文を追加
 ];
