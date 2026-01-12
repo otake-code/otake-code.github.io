@@ -17,7 +17,7 @@ const projects = [
     title: 'カフェ提案アプリ',
     description: '生成AIを用いて個人に合わせたカフェを提案\nHackAichi 2024で審査員賞を受賞🏆',
     image: `${process.env.PUBLIC_URL}/images/project-cafe.png`,
-    link: 'https://github.com/gusuku-oknw/HackAichi',
+    link: 'https://github.com/otake-code/HackAichi',
   },
   {
     title: '高齢者検知システム',
