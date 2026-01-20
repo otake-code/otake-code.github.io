@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# otake-code's Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React、Material UI、Framer Motion を使用して構築された、モダンでプレミアムな個人ポートフォリオサイトです。
+グラスモーフィズムデザイン、インタラクティブな背景エフェクト、そして詳細なアニメーションを特徴としています。
 
-## Available Scripts
+🌐 **Live Demo:** [https://otake-code.github.io](https://otake-code.github.io)
 
-In the project directory, you can run:
+## ✨ 特徴 (Features)
 
-### `npm start`
+*   **Premium Design**: ダークテーマを基調とし、グラスモーフィズムを取り入れた洗練されたUI。
+*   **Entry Animation**: サイト訪問時に「Welcome to my portfolio」の文字がタイプライター風に表示され、ドラマチックに飛び散って消えるオープニング演出。
+*   **Interactive Background**: マウスカーソルに追従し、有機的に形状を変えながら発光する背景エフェクト。
+*   **Responsive**: PC、タブレット、スマートフォンすべてに最適化されたレスポンシブデザイン。
+*   **Smooth Navigation**: スクロール位置に応じたヘッダーのハイライトや、スムーズなスクロール動作。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠 使用技術 (Tech Stack)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*   **Frontend**: [React](https://reactjs.org/)
+*   **UI Framework**: [Material UI (MUI)](https://mui.com/)
+*   **Animation**: [Framer Motion](https://www.framer.com/motion/)
+*   **Styling**: Styled Components / Emotion
+*   **Deployment**: GitHub Pages
 
-### `npm test`
+## 🚀 ローカルでの実行方法 (Getting Started)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+このプロジェクトをローカル環境で実行するには、以下の手順に従ってください。
 
-### `npm run build`
+### 1. 前提条件
+*   Node.js がインストールされていること。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. インストール
+リポジトリをクローンし、依存関係をインストールします。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/otake-code/otake-code.github.io.git
+cd otake-code.github.io
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. 開発サーバーの起動
+ローカルサーバーを立ち上げます。自動的にブラウザが開きます。
 
-### `npm run eject`
+```bash
+npm start
+```
+*   アクセス先: `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🌍 デプロイ (Deployment)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+GitHub Pages へのデプロイが設定済みです。編集後、以下のコマンドを実行するだけで変更を公開できます。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run deploy
+```
+このコマンドは自動的に `npm run build` を実行し、生成されたファイルを `gh-pages` ブランチにプッシュします。
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 ディレクトリ構成
 
-## Learn More
+```
+src/
+├── components/          # 各セクションのコンポーネント
+│   ├── EntryAnimation.js      # オープニングアニメーション
+│   ├── InteractiveBackground.js # 背景エフェクト
+│   ├── Header.js              # ナビゲーションヘッダー
+│   ├── Home.js                # トップ（ヒーロー）セクション
+│   ├── Skills.js              # スキル一覧
+│   ├── Projects.js            # プロジェクト紹介
+│   ├── Publications.js        # 研究業績
+│   ├── Contact.js             # 連絡先
+│   └── ...
+├── theme.js             # MUIのカスタムテーマ定義（色、フォント）
+├── App.js               # メインアプリケーション
+└── index.js             # エントリーポイント
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📝 ライセンス
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open source and available under the [MIT License](LICENSE).
