@@ -1,9 +1,8 @@
 // src/components/Skills.js
 import React from 'react';
-import { Box, Typography, Grid, Divider } from '@mui/material';
+import { Box, Typography, Grid, Container, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 
-// skillsData の中で、icon プロパティに自作アイコンを指定
 const skillsData = [
   {
     category: 'Front-End',
@@ -16,7 +15,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/html.svg`}
             alt="HTML Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -28,7 +27,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/css.svg`}
             alt="CSS Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -40,7 +39,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/javascript.svg`}
             alt="JavaScript Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -52,7 +51,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/react.svg`}
             alt="React Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -70,7 +69,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/c.svg`}
             alt="C Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -82,7 +81,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/cpp.svg`}
             alt="C++ Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -94,7 +93,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/java.svg`}
             alt="Java Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -106,7 +105,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/android.svg`}
             alt="Android Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -118,11 +117,10 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/python.svg`}
             alt="Python Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
-      // ここに PHP を追加
       {
         name: 'PHP',
         description: '大学の講義でデータベースの作成・操作を学習',
@@ -131,7 +129,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/php.svg`}
             alt="PHP Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -148,7 +146,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/sqlite.svg`}
             alt="SQLite Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -165,7 +163,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/gcp.svg`}
             alt="GCP Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -182,7 +180,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/pytorch.svg`}
             alt="PyTorch Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -194,7 +192,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/jupyter.svg`}
             alt="Jupyter Notebook Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -206,7 +204,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/matplotlib.svg`}
             alt="Matplotlib Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -218,7 +216,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/pandas.svg`}
             alt="pandas Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -230,7 +228,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/huggingface.svg`}
             alt="Transformers Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -247,7 +245,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/docker.svg`}
             alt="Docker Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -260,9 +258,9 @@ const skillsData = [
             src={`${process.env.PUBLIC_URL}/icons/slurm.png`}
             alt="Slurm Icon"
             sx={{
-              width: 28,
-              height: 28,
-              objectFit: 'contain',   // 縦横比を保って枠内に収める
+              width: 40,
+              height: 40,
+              objectFit: 'contain',
             }}
           />
         ),
@@ -275,7 +273,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/linux.svg`}
             alt="Linux Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -287,7 +285,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/bash.png`}
             alt="bash Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -304,7 +302,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/git.svg`}
             alt="Git Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -316,7 +314,7 @@ const skillsData = [
             component="img"
             src={`${process.env.PUBLIC_URL}/icons/github.svg`}
             alt="GitHub Icon"
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 40, height: 40 }}
           />
         ),
       },
@@ -329,62 +327,101 @@ const Skills = () => {
     <Box
       id="skills"
       sx={{
-        minHeight: '100vh',       // ← 画面１枚分の高さを確保
-        py: 6,
-        px: 2,
-        backgroundColor: '#f9f9f9',
+        py: 12,
+        position: 'relative',
+        background: 'linear-gradient(180deg, rgba(10,25,41,0) 0%, rgba(10,25,41,0.5) 100%)',
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <Typography variant="h3" align="center" gutterBottom>
-          My Skills
-        </Typography>
-      </motion.div>
+      <Container maxWidth="lg">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Typography
+            variant="h2"
+            align="center"
+            gutterBottom
+            sx={{
+              background: 'linear-gradient(45deg, #fff 30%, #b0b8c4 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              mb: 8
+            }}
+          >
+            My Skills
+          </Typography>
+        </motion.div>
 
-      <Grid container spacing={4} sx={{ mt: 3 }}>
         {skillsData.map((section, idx) => (
-          <Grid item xs={12} sm={6} md={4} key={idx}>
+          <Box key={idx} sx={{ mb: 8 }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
+               initial={{ opacity: 0, x: -20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
-              <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  mb: 3,
+                  borderLeft: '4px solid #00e5ff',
+                  pl: 2,
+                  color: 'text.secondary',
+                  fontWeight: 600
+                }}
+              >
                 {section.category}
               </Typography>
-              <Divider sx={{ mb: 1 }} />
-              {section.items.map((skill, sidx) => (
-                <Box
-                  key={sidx}
-                  sx={{
-                    mb: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                  }}
-                >
-                  {/* 自作アイコンの表示 */}
-                  <Box>{skill.icon}</Box>
-                  <Box>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'medium' }}>
-                      {skill.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {skill.description}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
             </motion.div>
-          </Grid>
+
+            <Grid container spacing={3}>
+              {section.items.map((skill, sidx) => (
+                <Grid item xs={12} sm={6} md={3} key={sidx}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 + sidx * 0.05 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <Paper
+                      sx={{
+                        p: 3,
+                        height: '100%',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        borderRadius: 3,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          border: '1px solid rgba(0, 229, 255, 0.3)',
+                          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
+                        }
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                         {/* Render the icon Box directly */}
+                         <Box sx={{ mb: 2 }}>
+                           {skill.icon}
+                         </Box>
+                        <Typography variant="h6" fontWeight="bold" gutterBottom>
+                          {skill.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {skill.description}
+                        </Typography>
+                      </Box>
+                    </Paper>
+                  </motion.div>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Container>
     </Box>
   );
 };

@@ -1,7 +1,8 @@
 // src/components/Home.js
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Button, Container } from '@mui/material';
 import { motion } from 'framer-motion';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SlideShow from './SlideShow';
 import MyGallery from './MyGallery';
 
@@ -23,110 +24,106 @@ function Home() {
       sx={{
         position: 'relative',
         width: '100vw',
-        height: {
-          xs: '100vh',
-          sm: '90vh',
-          md: '80vh',
-        },
+        height: '100vh',
         overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
-      <SlideShow images={slideImages} intervalTime={4000} />
+      {/* Background Slideshow with overlay */}
+      <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+        <SlideShow images={slideImages} intervalTime={5000} />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to right, rgba(10, 25, 41, 0.9) 0%, rgba(10, 25, 41, 0.6) 50%, rgba(10, 25, 41, 0.3) 100%)',
+          }}
+        />
+      </Box>
 
-      {/* 半透明＋小さめテキストで左下に配置 */}
-      <Typography
-        onClick={handleOpenGallery}
-        sx={{
-          position: 'absolute',
-          bottom: 12,
-          left: 12,
-          color: 'rgba(255, 255, 255, 0.6)',
-          fontSize: '0.8rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          '&:hover': { color: 'rgba(255, 255, 255, 0.9)' },
-          userSelect: 'none',
-          zIndex: 10,
-        }}
-      >
-        My Gallery
-      </Typography>
-
-      {openGallery && (
-        <MyGallery images={slideImages} onClose={handleCloseGallery} />
-      )}
-
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          zIndex: 1,
-        }}
-      />
-
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          zIndex: 5,
-        }}
-      >
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          style={{ width: '90%' }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         >
           <Typography
-            variant="h3"
+            variant="h6"
             sx={{
-              color: 'white',
-              fontWeight: 'bold',
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
-              lineHeight: 1.2,
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem' },
+              color: 'primary.main',
+              fontWeight: 700,
+              letterSpacing: 2,
+              mb: 2,
+              textTransform: 'uppercase'
             }}
           >
-            Welcome to
+            Portfolio
           </Typography>
+
           <Typography
             variant="h1"
             sx={{
               color: 'white',
+              fontSize: { xs: '2.5rem', md: '5rem' },
               fontWeight: 900,
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
               lineHeight: 1.1,
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' },
-              mt: 1,
+              mb: 1,
             }}
           >
-            Okada's Page
+            Hi, I'm <br />
+            <Box component="span" sx={{
+              background: 'linear-gradient(45deg, #00e5ff 30%, #7c4dff 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}>
+              Okada Takeo
+            </Box>
           </Typography>
+
           <Typography
-            variant="h6"
+            variant="h5"
             sx={{
-              color: 'white',
+              color: 'text.secondary',
+              maxWidth: '600px',
               mt: 2,
-              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.25rem' },
-              opacity: 0.9,
+              mb: 4,
+              lineHeight: 1.6,
+              fontWeight: 400
             }}
           >
-            I&apos;m Okada Takeo, a student based in Gifu Univ.
+            A student based in Gifu Univ. <br />
+            Exploring the world of code, one line at a time.
           </Typography>
+
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+              endIcon={<ArrowForwardIcon />}
+            >
+              View Projects
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={handleOpenGallery}
+              sx={{ color: 'white', borderColor: 'rgba(255,255,255,0.3)' }}
+            >
+              View Gallery
+            </Button>
+          </Box>
         </motion.div>
-      </Box>
+      </Container>
+
+
+      {openGallery && (
+        <MyGallery images={slideImages} onClose={handleCloseGallery} />
+      )}
     </Box>
   );
 }

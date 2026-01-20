@@ -1,141 +1,156 @@
 // src/components/About.js
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, useTheme, useMediaQuery } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Container, Grid, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 
-const ASPECT_THRESHOLD = 16 / 9;
 const About = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [isWide, setIsWide] = useState(false);
-
-  useEffect(() => {
-    const checkAspect = () => {
-      const ratio = window.innerWidth / window.innerHeight;
-      setIsWide(ratio >= ASPECT_THRESHOLD);
-    };
-    checkAspect();
-    window.addEventListener('resize', checkAspect);
-    return () => window.removeEventListener('resize', checkAspect);
-  }, []);
-
-  const sectionHeight = isMobile ? '50vh' : '70vh';
-
   return (
-    <Box id="about" sx={{ width: '100%', mb: 0, backgroundColor: '#fff' }}>
-      {/* ① タイトル部分（白背景） */}
-      <Box
-        sx={{
-          backgroundColor: '#ffffff',
-          py: 6,
-          px: 2,
-          textAlign: 'center',
-        }}
-      >
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: 'bold',
-            color: '#333',
-            mb: 2,
-            fontSize: {
-              xs: '2rem',
-              sm: '2.5rem',
-              md: '3rem',
-            },
-          }}
+    <Box
+      id="about"
+      sx={{
+        position: 'relative',
+        py: 12,
+        overflow: 'hidden'
+      }}
+    >
+      <Container maxWidth="lg">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          About Me
-        </Typography>
-      </Box>
-
-      {/* ② パララックス背景＋オーバーレイ＋コンテンツ */}
-      <Box
-        sx={{
-          position: 'relative',
-          width: '100%',
-          height: sectionHeight,
-          overflow: 'hidden',
-          backgroundColor: '#fffff', // ← 背景がグレーに見えてしまう場合、ここで白を指定
-          backgroundImage: `url(${process.env.PUBLIC_URL}/images/parallax-mountain.png)`,
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center top',
-          backgroundSize: isMobile
-            ? 'auto 100%'
-            : isWide
-            ? '100% auto'
-            : 'auto 100%',
-        }}
-      >
-
-
-        {/* 顔画像＋本文テキスト */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-            px: 2,
-            zIndex: 2,
-          }}
-        >
-          {/* 顔画像 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{ marginBottom: '1.5rem' }}
+          <Typography
+            variant="h2"
+            align="center"
+            gutterBottom
+            sx={{
+              background: 'linear-gradient(45deg, #fff 30%, #b0b8c4 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              mb: 8
+            }}
           >
-            <Box
-              component="img"
-              src={`${process.env.PUBLIC_URL}/images/image1.png`}
-              alt="My Avatar"
-              sx={{
-                width: { xs: 80, sm: 120, md: 160 },
-                height: 'auto',
-                borderRadius: '50%',
-                border: '3px solid white',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-              }}
-            />
-          </motion.div>
+            About Me
+          </Typography>
+        </motion.div>
 
-          {/* 本文テキスト */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                maxWidth: 600,
-                color: '#eee',
-                fontSize: {
-                  xs: '0.9rem',
-                  sm: '1rem',
-                  md: '1.125rem',
-                },
-                lineHeight: 1.6,
-                whiteSpace: 'pre-line',
-              }}
+        <Grid container spacing={6} alignItems="center">
+          <Grid item xs={12} md={5}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              情報系専攻の岡田です．Vision＆Languageの研究に取り組んでいます．{'\n'}
-              趣味は写真撮影と旅行です．
-            </Typography>
-          </motion.div>
-        </Box>
-      </Box>
+              <Box
+                sx={{
+                  position: 'relative',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: -20,
+                    left: -20,
+                    width: '100%',
+                    height: '100%',
+                    border: '2px solid rgba(0, 229, 255, 0.3)',
+                    borderRadius: '50%',
+                    zIndex: 0,
+                  },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: -20,
+                    right: -20,
+                    width: '100%',
+                    height: '100%',
+                    border: '2px solid rgba(124, 77, 255, 0.3)',
+                    borderRadius: '50%',
+                    zIndex: 0,
+                  }
+                }}
+              >
+                <Box
+                  component="img"
+                  src={`${process.env.PUBLIC_URL}/images/me.png`}
+                  alt="My Avatar"
+                  sx={{
+                    width: '100%',
+                    maxWidth: 400,
+                    height: 'auto',
+                    borderRadius: '50%',
+                    border: '4px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                    position: 'relative',
+                    zIndex: 1,
+                    display: 'block',
+                    margin: '0 auto',
+                    filter: 'grayscale(20%)',
+                    transition: 'filter 0.3s ease',
+                    '&:hover': {
+                      filter: 'grayscale(0%)'
+                    }
+                  }}
+                />
+              </Box>
+            </motion.div>
+          </Grid>
+
+          <Grid item xs={12} md={7}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  background: 'rgba(19, 47, 76, 0.4)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: 4,
+                }}
+              >
+                <Typography variant="h5" color="primary" gutterBottom fontWeight="bold">
+                  Okada Takeo
+                </Typography>
+                <Typography variant="h6" color="text.secondary" gutterBottom sx={{ mb: 3 }}>
+                  Gifu University Student | Researcher
+                </Typography>
+                <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, fontSize: '1.1rem' }}>
+                  情報系専攻の岡田です．Vision＆Languageの研究に取り組んでいます．<br />
+                  最新のAI技術を活用した、実世界の問題解決に興味があります．
+                </Typography>
+                <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, fontSize: '1.1rem' }}>
+                  趣味は写真撮影と旅行です．<br />
+                </Typography>
+
+                <Box sx={{ mt: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                  {['Vision & Language', 'Deep Learning', 'Web Development'].map((tag) => (
+                    <Box
+                      key={tag}
+                      sx={{
+                        px: 2,
+                        py: 1,
+                        borderRadius: 10,
+                        background: 'rgba(0, 229, 255, 0.1)',
+                        border: '1px solid rgba(0, 229, 255, 0.3)',
+                        color: 'primary.light',
+                        fontSize: '0.9rem',
+                        fontWeight: 600
+                      }}
+                    >
+                      {tag}
+                    </Box>
+                  ))}
+                </Box>
+              </Paper>
+            </motion.div>
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 };

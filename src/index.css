@@ -7,8 +7,42 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #1a1a1d;
-  color: #c5c6c7;
+:root {
+  --primary-gradient: linear-gradient(135deg, #00e5ff 0%, #7c4dff 100%);
+  --glass-bg: rgba(19, 47, 76, 0.6);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0a1929;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1929;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3e5060;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00e5ff;
+}
+

@@ -1,23 +1,28 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Container, Divider } from '@mui/material';
 
-function Footer() {
+const Footer = () => {
   return (
     <Box
       component="footer"
       sx={{
-        py: 2,
-        textAlign: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        color: 'white',
-        width: '100%',
+        py: 4,
+        background: 'rgba(10, 25, 41, 0.9)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
       }}
     >
-      <Typography variant="body1">
-        Copyright©otake-code. All Rights Reserved.
-      </Typography>
+      <Container maxWidth="lg">
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+          <Typography variant="body2" color="text.secondary">
+            &copy; {new Date().getFullYear()} Okada Takeo. All rights reserved.
+          </Typography>
+          <Typography variant="caption" color="text.disabled" sx={{ mt: 1 }}>
+            {/* Built with React & MUI */}
+          </Typography>
+        </Box>
+      </Container>
     </Box>
   );
-}
+};
 
 export default Footer;

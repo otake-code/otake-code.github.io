@@ -13,18 +13,14 @@ import {
   Box,
   useMediaQuery,
   Slide,
-  useScrollTrigger
+  useScrollTrigger,
+  Container
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 
-/**
- * HideOnScroll コンポーネント
- * 下スクロールでヘッダーを隠し、上スクロールで表示する
- */
 function HideOnScroll(props) {
   const { children } = props;
-  // Trigger は「下にスクロール開始したら true」
   const trigger = useScrollTrigger({ threshold: 0 });
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -35,9 +31,8 @@ function HideOnScroll(props) {
 
 function Header() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  // 現在アクティブなセクションIDを保持
   const [activeSection, setActiveSection] = React.useState('home');
 
   const menuItems = [
@@ -49,12 +44,11 @@ function Header() {
     { label: 'Contact', id: 'contact' },
   ];
 
-  // セクションがビューポートに入ったら activeSection を更新する
   React.useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.5, // セクションが 50% ほど見えたらコールバック
+      rootMargin: '-70px 0px -70% 0px', // Adjust to better trigger active state
+      threshold: 0,
     };
 
     const handleIntersect = (entries) => {
@@ -66,7 +60,6 @@ function Header() {
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    // 各セクション要素を監視
     menuItems.forEach((item) => {
       const elem = document.getElementById(item.id);
       if (elem) observer.observe(elem);
@@ -78,22 +71,46 @@ function Header() {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      // スムーススクロール
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offsetKey = sectionId === 'home' ? 0 : 80; // Offset for fixed header
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offsetKey;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setDrawerOpen(false);
   };
 
   const renderMenuButtons = () => (
-    <Box sx={{ display: 'flex', gap: 2 }}>
+    <Box sx={{ display: 'flex', gap: 1 }}>
       {menuItems.map((item) => (
         <Button
           key={item.id}
           color="inherit"
           onClick={() => scrollToSection(item.id)}
           sx={{
-            borderBottom: activeSection === item.id ? '2px solid white' : 'none',
-            fontWeight: activeSection === item.id ? 'bold' : 'normal',
+            position: 'relative',
+            px: 2,
+            color: activeSection === item.id ? theme.palette.primary.main : theme.palette.text.secondary,
+            fontWeight: activeSection === item.id ? 700 : 500,
+            '&:hover': {
+              color: 'white',
+              backgroundColor: 'rgba(255,255,255,0.05)',
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: 6,
+              left: '50%',
+              transform: activeSection === item.id ? 'translateX(-50%)' : 'translateX(-50%) scaleX(0)',
+              width: '20px',
+              height: '2px',
+              backgroundColor: theme.palette.primary.main,
+              borderRadius: '2px',
+              transition: 'transform 0.3s ease',
+            },
           }}
         >
           {item.label}
@@ -103,21 +120,44 @@ function Header() {
   );
 
   const renderDrawerList = () => (
-    <Box sx={{ width: 200 }} role="presentation">
+    <Box
+      sx={{
+        width: 280,
+        height: '100%',
+        backgroundColor: theme.palette.background.default, /* Ensure no transparency issues */
+        color: 'white'
+      }}
+      role="presentation"
+    >
+      <Box sx={{ p: 4, mb: 2 }}>
+        <Typography variant="h5" fontWeight="bold">
+          Menu
+        </Typography>
+      </Box>
       <List>
         {menuItems.map((item) => (
           <ListItem
             button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            selected={activeSection === item.id}
             sx={{
-              '&.Mui-selected': {
-                backgroundColor: 'rgba(255,255,255,0.1)',
-              },
+              my: 1,
+              mx: 2,
+              borderRadius: 2,
+              width: 'auto',
+              backgroundColor: activeSection === item.id ? alpha(theme.palette.primary.main, 0.1) : 'transparent',
+              color: activeSection === item.id ? theme.palette.primary.main : theme.palette.text.secondary,
+              '&:hover': {
+                 backgroundColor: alpha(theme.palette.primary.main, 0.05),
+              }
             }}
           >
-            <ListItemText primary={item.label} />
+            <ListItemText
+              primary={item.label}
+              primaryTypographyProps={{
+                fontWeight: activeSection === item.id ? 700 : 500
+              }}
+            />
           </ListItem>
         ))}
       </List>
@@ -125,45 +165,67 @@ function Header() {
   );
 
   return (
-    <HideOnScroll>
       <AppBar
         position="fixed"
         sx={{
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          backdropFilter: 'blur(10px)',
-          zIndex: (theme) => theme.zIndex.drawer + 1,
+          background: 'rgba(10, 25, 41, 0.7)',
+          backdropFilter: 'blur(20px)',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
         }}
       >
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            My Portfolio
-          </Typography>
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h5"
+              sx={{
+                flexGrow: 1,
+                fontWeight: 800,
+                background: 'linear-gradient(45deg, #00e5ff 30%, #7c4dff 90%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                cursor: 'pointer',
+                letterSpacing: '-0.5px'
+              }}
+              onClick={() => scrollToSection('home')}
+            >
+              Okada.Portfolio
+            </Typography>
 
-          {isMobile ? (
-            <>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={() => setDrawerOpen(true)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Drawer
-                anchor="right"
-                open={drawerOpen}
-                onClose={() => setDrawerOpen(false)}
-              >
-                {renderDrawerList()}
-              </Drawer>
-            </>
-          ) : (
-            renderMenuButtons()
-          )}
-        </Toolbar>
+            {isMobile ? (
+              <>
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={() => setDrawerOpen(true)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Drawer
+                  anchor="right"
+                  open={drawerOpen}
+                  onClose={() => setDrawerOpen(false)}
+                  PaperProps={{
+                    sx: {
+                       backdropFilter: 'blur(10px)',
+                       background: 'rgba(10, 25, 41, 0.95)',
+                    }
+                  }}
+                >
+                  {renderDrawerList()}
+                </Drawer>
+              </>
+            ) : (
+              renderMenuButtons()
+            )}
+          </Toolbar>
+        </Container>
       </AppBar>
-    </HideOnScroll>
   );
 }
 
+
+
 export default Header;
+
