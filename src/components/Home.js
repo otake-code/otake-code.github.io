@@ -103,7 +103,18 @@ function Home() {
             <Button
               variant="contained"
               size="large"
-              onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                const section = document.getElementById('projects');
+                if (section) {
+                  const headerOffset = 80;
+                  const elementPosition = section.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
               endIcon={<ArrowForwardIcon />}
             >
               View Projects
