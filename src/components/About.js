@@ -42,7 +42,7 @@ const About = () => {
       ref={containerRef}
       sx={{
         position: 'relative',
-        py: 12,
+        py: 8,
         overflow: 'hidden'
       }}
     >
@@ -89,18 +89,18 @@ const About = () => {
                 }}
               >
                 {/* 3D Card Container */}
-                <Box
-                  onClick={handleCardClick}
-                  sx={{
-                    position: 'relative',
-                    width: '100%',
-                    maxWidth: 400,
-                    margin: '0 auto',
-                    perspective: '1500px',
-                    cursor: 'pointer',
-                    aspectRatio: '1/1',
-                  }}
-                >
+                  <Box
+                    onClick={handleCardClick}
+                    sx={{
+                      position: 'relative',
+                      width: '100%',
+                      maxWidth: 350,
+                      margin: '0 auto',
+                      perspective: '1500px',
+                      cursor: 'pointer',
+                      aspectRatio: '1/1',
+                    }}
+                  >
                   <motion.div
                     style={{
                       width: '100%',
@@ -245,10 +245,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Paper
+            <Paper
                 elevation={0}
                 sx={{
-                  p: 4,
+                  p: 3,
                   background: 'rgba(19, 47, 76, 0.4)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',

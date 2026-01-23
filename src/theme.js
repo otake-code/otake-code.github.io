@@ -27,26 +27,41 @@ const theme = createTheme({
     h1: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 800,
+      fontSize: '2.5rem',
+      '@media (min-width:600px)': {
+        fontSize: '4rem',
+      },
     },
     h2: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 700,
+      fontSize: '2rem',
+      '@media (min-width:600px)': {
+        fontSize: '2.75rem',
+      },
     },
     h3: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 700,
+      fontSize: '1.75rem',
+      '@media (min-width:600px)': {
+        fontSize: '2.25rem',
+      },
     },
     h4: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
+      fontSize: '1.5rem',
     },
     h5: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
+      fontSize: '1.25rem',
     },
     h6: {
       fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
+      fontSize: '1.1rem',
     },
     button: {
       fontFamily: '"Outfit", sans-serif',

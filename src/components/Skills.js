@@ -327,7 +327,7 @@ const Skills = () => {
     <Box
       id="skills"
       sx={{
-        py: 12,
+        py: 8,
         position: 'relative',
         background: 'linear-gradient(180deg, rgba(10,25,41,0) 0%, rgba(10,25,41,0.5) 100%)',
       }}
@@ -347,7 +347,7 @@ const Skills = () => {
               background: 'linear-gradient(45deg, #fff 30%, #b0b8c4 90%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              mb: 8
+              mb: 6
             }}
           >
             My Skills

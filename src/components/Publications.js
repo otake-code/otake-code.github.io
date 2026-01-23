@@ -26,7 +26,7 @@ const Publications = () => {
     <Box
       id="publications"
       sx={{
-        py: 12,
+        py: 8,
         position: 'relative',
         zIndex: 1
       }}
@@ -46,7 +46,7 @@ const Publications = () => {
               background: 'linear-gradient(45deg, #00e5ff 30%, #7c4dff 90%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              mb: 8,
+              mb: 6,
               fontWeight: 800
             }}
           >

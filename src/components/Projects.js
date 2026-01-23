@@ -28,7 +28,7 @@ const Projects = () => {
     <Box
       id="projects"
       sx={{
-        py: 12,
+        py: 8,
         position: 'relative'
       }}
     >
@@ -47,7 +47,7 @@ const Projects = () => {
               background: 'linear-gradient(45deg, #fff 30%, #b0b8c4 90%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              mb: 8
+              mb: 6
             }}
           >
             Projects

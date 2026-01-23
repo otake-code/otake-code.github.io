@@ -64,37 +64,37 @@ function Home() {
             Portfolio
           </Typography>
 
-          <Typography
-            variant="h1"
-            sx={{
-              color: 'white',
-              fontSize: { xs: '2.5rem', md: '5rem' },
-              fontWeight: 900,
-              lineHeight: 1.1,
-              mb: 1,
-            }}
-          >
-            Hi, I'm <br />
-            <Box component="span" sx={{
-              background: 'linear-gradient(45deg, #00e5ff 30%, #7c4dff 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}>
-              Okada Takeo
-            </Box>
-          </Typography>
+            <Typography
+              variant="h1"
+              sx={{
+                color: 'white',
+                fontSize: { xs: '2.5rem', md: '4rem' },
+                fontWeight: 900,
+                lineHeight: 1.1,
+                mb: 1,
+              }}
+            >
+              Hi, I'm <br />
+              <Box component="span" sx={{
+                background: 'linear-gradient(45deg, #00e5ff 30%, #7c4dff 90%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}>
+                Okada Takeo
+              </Box>
+            </Typography>
 
-          <Typography
-            variant="h5"
-            sx={{
-              color: 'text.secondary',
-              maxWidth: '600px',
-              mt: 2,
-              mb: 4,
-              lineHeight: 1.6,
-              fontWeight: 400
-            }}
-          >
+            <Typography
+              variant="h5"
+              sx={{
+                color: 'text.secondary',
+                maxWidth: '600px',
+                mt: 2,
+                mb: 3,
+                lineHeight: 1.6,
+                fontWeight: 400
+              }}
+            >
             A student based in Gifu Univ. <br />
             Exploring the world of code, one line at a time.
           </Typography>
