@@ -35,6 +35,7 @@ function App() {
           minHeight: '100vh',
           background: 'radial-gradient(circle at 10% 20%, rgb(10, 25, 41) 0%, rgb(13, 33, 53) 90.2%)',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
         {/* Global animated background blobs */}
@@ -55,7 +56,7 @@ function App() {
         <Box
           sx={{
             position: 'absolute',
-            bottom: '-10%',
+            bottom: 0,
             right: '-10%',
             width: '60vw',
             height: '60vw',
