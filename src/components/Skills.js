@@ -378,7 +378,7 @@ const Skills = () => {
 
             <Grid container spacing={3}>
               {section.items.map((skill, sidx) => (
-                <Grid item xs={12} sm={6} md={3} key={sidx}>
+                <Grid item xs={6} sm={6} md={3} key={sidx}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
