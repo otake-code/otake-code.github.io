@@ -143,6 +143,18 @@ function MyGallery({ images, onClose }) {
                       height: '100%',
                       objectFit: 'cover',
                       transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)', // Smooth zoom
+                      WebkitTouchCallout: 'none',
+                    }}
+                  />
+                  {/* Protection Layer to prevent long-press save menu */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      zIndex: 2,
                     }}
                   />
                   {/* Subtle overlay on hover */}
@@ -157,7 +169,8 @@ function MyGallery({ images, onClose }) {
                       bgcolor: 'rgba(0, 229, 255, 0.1)',
                       opacity: 0,
                       transition: 'opacity 0.3s ease',
-                      pointerEvents: 'none'
+                      pointerEvents: 'none',
+                      zIndex: 3
                     }}
                   />
                 </Box>
@@ -214,21 +227,38 @@ function MyGallery({ images, onClose }) {
               <CloseIcon fontSize="large" />
             </IconButton>
 
-            <Box
-              component="img"
-              src={selectedImage}
-              alt="Preview"
-              draggable={false}
-              onContextMenu={(e) => e.preventDefault()}
-              onClick={(e) => e.stopPropagation()} // Prevent close when clicking image
-              sx={{
-                maxWidth: '90vw',
-                maxHeight: '85vh',
-                objectFit: 'contain',
-                borderRadius: 2,
-                boxShadow: '0 0 50px rgba(0,0,0,0.5)',
-              }}
-            />
+            <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Box
+                component="img"
+                src={selectedImage}
+                alt="Preview"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onClick={(e) => e.stopPropagation()} // Prevent close when clicking image
+                sx={{
+                  maxWidth: '90vw',
+                  maxHeight: '85vh',
+                  objectFit: 'contain',
+                  borderRadius: 2,
+                  boxShadow: '0 0 50px rgba(0,0,0,0.5)',
+                  WebkitTouchCallout: 'none',
+                  userSelect: 'none',
+                }}
+              />
+              {/* Protection Layer to prevent long-press save menu on preview */}
+              <Box
+                onClick={(e) => e.stopPropagation()}
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  zIndex: 2,
+                  borderRadius: 2,
+                }}
+              />
+            </Box>
 
             <Typography
               variant="caption"
