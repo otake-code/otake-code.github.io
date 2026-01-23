@@ -80,11 +80,15 @@ const EntryAnimation = ({ onComplete }) => {
           color: '#00e5ff', // Cyan color
           textShadow: '0 0 20px rgba(0, 229, 255, 0.5)', // Glow effect
           fontWeight: 800,
-          display: 'flex',
           overflow: 'visible', // Allow scatter outside
-          whiteSpace: 'pre',
+          whiteSpace: 'pre-wrap', // Allow wrapping
           fontFamily: "'Outfit', sans-serif", // Modern font
           letterSpacing: '0.05em',
+          fontSize: { xs: '2rem', sm: '3rem', md: '3.75rem' }, // Responsive font size
+          px: 2, // Add horizontal padding
+          textAlign: 'center',
+          width: '100%',
+          display: 'block', // Ensure block layout relative to container
         }}
       >
         {/* Render characters. If scattering, render all chars individually with scatter animation.
@@ -96,7 +100,7 @@ const EntryAnimation = ({ onComplete }) => {
             <motion.span
               animate={{ opacity: [0, 1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              style={{ display: 'inline-block', width: '10px', backgroundColor: '#00e5ff', marginLeft: '5px' }}
+              style={{ display: 'inline-block', width: '10px', height: '1em', backgroundColor: '#00e5ff', marginLeft: '5px', verticalAlign: 'middle' }}
             />
           </>
         ) : (

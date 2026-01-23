@@ -35,7 +35,6 @@ function App() {
           minHeight: '100vh',
           background: 'radial-gradient(circle at 10% 20%, rgb(10, 25, 41) 0%, rgb(13, 33, 53) 90.2%)',
           position: 'relative',
-          overflow: 'hidden',
         }}
       >
         {/* Global animated background blobs */}
